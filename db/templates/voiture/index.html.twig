@@ -5,6 +5,15 @@
 {% block body %}
     <h1>Voiture index</h1>
 
+    {# read and display all flash messages #}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <table class="table">
         <thead>
             <tr>
@@ -32,4 +41,10 @@
     </table>
 
     <a href="{{ path('voiture_new') }}">Create new</a>
+    <br>
+    <a href="{{ path('three_in_a_row') }}">Create three new</a>
+    <br>
+    <a href="{{ path('three_delete') }}">Delete last three</a>
+
+
 {% endblock %}
