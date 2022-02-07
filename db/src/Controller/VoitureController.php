@@ -19,7 +19,6 @@ class VoitureController extends AbstractController
     {
         return $this->render('voiture/index.html.twig', [
             'voitures' => $voitureRepository->findAll(),
-            /*dd($voitureRepository->find(20))*/
         ]);
     }
 
@@ -72,42 +71,54 @@ class VoitureController extends AbstractController
     #[Route('/deleteThreeCars', name: 'three_delete', methods: ['GET'])]
     public function threeDelete(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager): Response
     {
-//        $test = $voitureRepository->findOneBySomeField(47);
-        $testBis = $voitureRepository->findAll();
-      /*  $testThird = $testBis[44];*/
-//        for($i=count($testBis)-1; $i>count($testBis)-4; --$i)
-//            {
-//                /*$other = $testBis[$i];*/
-//            dd($testBis[$i]);
-//            }
-
-        $testUn = $testBis[count($testBis)-1];
-        $testDeux = $testBis[count($testBis)-2];
-        $testTrois = $testBis[count($testBis)-3];
-
+        $listVoiture = $voitureRepository->findAll();
+        $nbrVoiture = count($listVoiture);
+        $nbrSuppression = $nbrVoiture < 3 ? $nbrVoiture : 3;
+        for($i = $nbrVoiture; $i > $nbrVoiture-$nbrSuppression; $i--)
+        {
+            $entityManager->remove($listVoiture[$i-1]);
+        }
+        $entityManager->flush();
+/*        $testUn = $listVoiture[count($listVoiture)-1];
+        $testDeux = $listVoiture[count($listVoiture)-2];
+        $testTrois = $listVoiture[count($listVoiture)-3];
         $entityManager->remove($testUn);
         $entityManager->remove($testDeux);
         $entityManager->remove($testTrois);
-        $this->addFlash('notice', 'Voiture supprimé');
-        $entityManager->flush();
+        $entityManager->flush();*/
+        if (0===$nbrSuppression) {
+            $this->addFlash('notice', "Il n'y a pas de voiture à supprimer");
+        } else {
+            $this->addFlash('notice', "Vous avez supprimé : $nbrSuppression Voiture.s");
+        }
 
-        return $this->render('voiture/index.html.twig', [
-            'voitures' => $voitureRepository->findAll(),
+        return $this->redirectToRoute('voiture_index', [
+
 /*        return $this->render('voiture/deleteThreeCars.twig', [
             'voitures' => $voitureRepository->findAll(),*/
-//            dd(count($testBis),$testUn, $testDeux, $testTrois)
-        ]);
-        /* $test = $voitureRepository->findOneBySomeField(47);
-         $testBis = $voitureRepository->findAll();
-         $testThird = $testBis[44];
-         return $this->render('voiture/deleteThreeCars.twig', [
-             dd($test,$testBis, $testThird)
-         ]);*/
+//            dd(count($listVoiture),$testUn, $testDeux, $testTrois)
+        ], Response::HTTP_SEE_OTHER);
+    }
 
+    #[Route('/deleteThreeCarsRepo', name: 'three_delete_repo')]
+    public function deleteThreeCarsRepo(VoitureRepository $voitureRepository, EntityManagerInterface $entityManager): Response
+    {
+        $listVoiture = $voitureRepository->deleteThreeCarsRepo();
+        $nbrSuppression = count($listVoiture);
 
+        for($i = $nbrSuppression; $i > 0; $i--)
+        {
+            $entityManager->remove($listVoiture[$i-1]);
+        }
+        $entityManager->flush();
 
+        if (0===$nbrSuppression) {
+            $this->addFlash('notice', "Il n'y a pas de voiture à supprimer");
+        } else {
+            $this->addFlash('notice', "Vous avez supprimé : $nbrSuppression Voiture.s");
+        }
 
-
+        return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
     }
 
     #[Route('/{id}', name: 'voiture_show', methods: ['GET'])]

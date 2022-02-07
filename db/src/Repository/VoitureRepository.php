@@ -19,6 +19,16 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
+    public function deleteThreeCarsRepo()
+    {
+        return $this->createQueryBuilder('v')
+            ->orderBy('v.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Voiture[] Returns an array of Voiture objects
     //  */
@@ -37,7 +47,7 @@ class VoitureRepository extends ServiceEntityRepository
     */
 
 
-    public function findOneBySomeField($value): ?Voiture
+/*    public function findOneBySomeField($value): ?Voiture
     {
         return $this->createQueryBuilder('v')
             ->andWhere('v.id = :val')
@@ -45,6 +55,6 @@ class VoitureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }
+    }*/
 
 }
