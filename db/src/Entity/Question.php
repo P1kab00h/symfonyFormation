@@ -16,13 +16,14 @@ class Question
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $question;
-
-    #[ORM\OneToMany(mappedBy: 'question_fk', targetEntity: Reponse::class)]
-    private $reponses;
+    private $questionPourUnChampion;
 
     #[ORM\ManyToOne(targetEntity: Sujet::class, inversedBy: 'questions')]
-    private $sujet_fk;
+    #[ORM\JoinColumn(nullable: false)]
+    private $sujets;
+
+    #[ORM\OneToMany(mappedBy: 'questions', targetEntity: Reponse::class, orphanRemoval: true)]
+    private $reponses;
 
     public function __construct()
     {
@@ -34,14 +35,26 @@ class Question
         return $this->id;
     }
 
-    public function getQuestion(): ?string
+    public function getQuestionPourUnChampion(): ?string
     {
-        return $this->question;
+        return $this->questionPourUnChampion;
     }
 
-    public function setQuestion(string $question): self
+    public function setQuestionPourUnChampion(string $questionPourUnChampion): self
     {
-        $this->question = $question;
+        $this->questionPourUnChampion = $questionPourUnChampion;
+
+        return $this;
+    }
+
+    public function getSujets(): ?Sujet
+    {
+        return $this->sujets;
+    }
+
+    public function setSujets(?Sujet $sujets): self
+    {
+        $this->sujets = $sujets;
 
         return $this;
     }
@@ -58,7 +71,7 @@ class Question
     {
         if (!$this->reponses->contains($reponse)) {
             $this->reponses[] = $reponse;
-            $reponse->setQuestionFk($this);
+            $reponse->setQuestions($this);
         }
 
         return $this;
@@ -68,22 +81,10 @@ class Question
     {
         if ($this->reponses->removeElement($reponse)) {
             // set the owning side to null (unless already changed)
-            if ($reponse->getQuestionFk() === $this) {
-                $reponse->setQuestionFk(null);
+            if ($reponse->getQuestions() === $this) {
+                $reponse->setQuestions(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getSujetFk(): ?Sujet
-    {
-        return $this->sujet_fk;
-    }
-
-    public function setSujetFk(?Sujet $sujet_fk): self
-    {
-        $this->sujet_fk = $sujet_fk;
 
         return $this;
     }

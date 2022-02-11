@@ -14,13 +14,11 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('question')
-            ->add('sujet_fk', EntityType::class,
-
-                [
+            ->add('questionPourUnChampion')
+//            ->add('sujets')
+            ->add('sujets', EntityType::class, [
                 'class' => Sujet::class,
-                'expanded' => true,
-                'choice_label' => 'titre'
+                'choice_label' => 'theme'
             ])
         ;
     }

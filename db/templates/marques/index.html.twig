@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marque index{% endblock %}
+{% block title %}Marques index{% endblock %}
 
 {% block body %}
-    <h1>Marque index</h1>
+    <h1>Marques index</h1>
 
     <table class="table">
         <thead>
@@ -19,8 +19,8 @@
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.nom }}</td>
                 <td>
-                    <a href="{{ path('marque_show', {'id': marque.id}) }}">show</a>
-                    <a href="{{ path('marque_edit', {'id': marque.id}) }}">edit</a>
+                    <a href="{{ path('marques_show', {'id': marque.id}) }}">show</a>
+                    <a href="{{ path('marques_edit', {'id': marque.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('marque_new') }}">Create new</a>
+    <a href="{{ path('marques_new') }}">Create new</a>
 {% endblock %}

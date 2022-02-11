@@ -12,15 +12,9 @@
                 <td>{{ question.id }}</td>
             </tr>
             <tr>
-                <th>Question</th>
-                <td>{{ question.question }}</td>
-
+                <th>QuestionPourUnChampion</th>
+                <td>{{ question.questionPourUnChampion }}</td>
             </tr>
-            <td>
-                {% if question.sujetFk.titre is defined %}
-                    {{ question.sujetFk.titre }}
-                {% endif %}
-            </td>
         </tbody>
     </table>
 

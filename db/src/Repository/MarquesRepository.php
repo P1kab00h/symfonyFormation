@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Marque;
+use App\Entity\Marques;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Marque|null find($id, $lockMode = null, $lockVersion = null)
- * @method Marque|null findOneBy(array $criteria, array $orderBy = null)
- * @method Marque[]    findAll()
- * @method Marque[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Marques|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Marques|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Marques[]    findAll()
+ * @method Marques[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MarqueRepository extends ServiceEntityRepository
+class MarquesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Marque::class);
+        parent::__construct($registry, Marques::class);
     }
 
     // /**
-    //  * @return Marque[] Returns an array of Marque objects
+    //  * @return Marques[] Returns an array of Marques objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MarqueRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Marque
+    public function findOneBySomeField($value): ?Marques
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

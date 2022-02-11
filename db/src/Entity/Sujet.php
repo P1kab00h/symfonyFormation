@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SujetRepository::class)]
-class    Sujet
+class Sujet
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,9 +16,9 @@ class    Sujet
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $titre;
+    private $theme;
 
-    #[ORM\OneToMany(mappedBy: 'sujet_fk', targetEntity: Question::class)]
+    #[ORM\OneToMany(mappedBy: 'sujets', targetEntity: Question::class, orphanRemoval: true)]
     private $questions;
 
     public function __construct()
@@ -31,14 +31,14 @@ class    Sujet
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTheme(): ?string
     {
-        return $this->titre;
+        return $this->theme;
     }
 
-    public function setTitre(string $titre): self
+    public function setTheme(string $theme): self
     {
-        $this->titre = $titre;
+        $this->theme = $theme;
 
         return $this;
     }
@@ -55,7 +55,7 @@ class    Sujet
     {
         if (!$this->questions->contains($question)) {
             $this->questions[] = $question;
-            $question->setSujetFk($this);
+            $question->setSujets($this);
         }
 
         return $this;
@@ -65,11 +65,16 @@ class    Sujet
     {
         if ($this->questions->removeElement($question)) {
             // set the owning side to null (unless already changed)
-            if ($question->getSujetFk() === $this) {
-                $question->setSujetFk(null);
+            if ($question->getSujets() === $this) {
+                $question->setSujets(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->theme;
     }
 }

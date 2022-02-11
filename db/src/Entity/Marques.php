@@ -2,28 +2,28 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
+use App\Repository\MarquesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MarqueRepository::class)]
-class Marque
+#[ORM\Entity(repositoryClass: MarquesRepository::class)]
+class Marques
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    #[ORM\Column(type: 'string', length: 100)]
     private $nom;
 
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Voiture::class)]
-    private $voiture;
+    private $voitures;
 
     public function __construct()
     {
-        $this->voiture = new ArrayCollection();
+        $this->voitures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -36,7 +36,7 @@ class Marque
         return $this->nom;
     }
 
-    public function setNom(?string $nom): self
+    public function setNom(string $nom): self
     {
         $this->nom = $nom;
 
@@ -46,15 +46,15 @@ class Marque
     /**
      * @return Collection|Voiture[]
      */
-    public function getVoiture(): Collection
+    public function getVoitures(): Collection
     {
-        return $this->voiture;
+        return $this->voitures;
     }
 
     public function addVoiture(Voiture $voiture): self
     {
-        if (!$this->voiture->contains($voiture)) {
-            $this->voiture[] = $voiture;
+        if (!$this->voitures->contains($voiture)) {
+            $this->voitures[] = $voiture;
             $voiture->setMarque($this);
         }
 
@@ -63,7 +63,7 @@ class Marque
 
     public function removeVoiture(Voiture $voiture): self
     {
-        if ($this->voiture->removeElement($voiture)) {
+        if ($this->voitures->removeElement($voiture)) {
             // set the owning side to null (unless already changed)
             if ($voiture->getMarque() === $this) {
                 $voiture->setMarque(null);

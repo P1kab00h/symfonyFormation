@@ -17,13 +17,8 @@
             </tr>
             <tr>
                 <th>Marque</th>
-                <td>
-                    {% if voiture.marque.nom is defined %}
-                    {{ voiture.marque.nom }}
-                    {% endif %}
-                </td>
+                <td>{{ voiture.marque.nom }}</td>
             </tr>
-
         </tbody>
     </table>
 

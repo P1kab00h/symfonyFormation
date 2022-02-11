@@ -3,20 +3,18 @@
 {% block title %}Sujet{% endblock %}
 
 {% block body %}
-    <h1>Sujet</h1>
+    <h1>Theme du QCM {{ sujet.theme }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sujet.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ sujet.titre }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {% for question in sujet.questions %}
+        <h2>{{ question.questionPourUnChampion }}</h2>
+
+        {% for reponse in question.reponses %}
+{#            {{ reponse.nom }}#}
+            <input type="checkbox" value="{{ reponse.id }}" name="reponse" id="reponse{{ reponse.id }}">
+            <label for="reponse{{ reponse.id }}">{{ reponse.nom }}</label>
+            <br>
+        {% endfor %}
+    {% endfor %}
 
     <a href="{{ path('sujet_index') }}">back to list</a>
 

@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Reponse</th>
+                <th>Nom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
         {% for reponse in reponses %}
             <tr>
                 <td>{{ reponse.id }}</td>
-                <td>{{ reponse.reponse }}</td>
+                <td>{{ reponse.nom }}</td>
                 <td>
                     <a href="{{ path('reponse_show', {'id': reponse.id}) }}">show</a>
                     <a href="{{ path('reponse_edit', {'id': reponse.id}) }}">edit</a>

@@ -9,7 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Titre</th>
+                <th>Theme</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,7 +17,7 @@
         {% for sujet in sujets %}
             <tr>
                 <td>{{ sujet.id }}</td>
-                <td>{{ sujet.titre }}</td>
+                <td>{{ sujet.theme }}</td>
                 <td>
                     <a href="{{ path('sujet_show', {'id': sujet.id}) }}">show</a>
                     <a href="{{ path('sujet_edit', {'id': sujet.id}) }}">edit</a>

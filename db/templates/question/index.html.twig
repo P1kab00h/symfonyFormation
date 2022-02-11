@@ -9,8 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Question</th>
-                <th>Sujet</th>
+                <th>QuestionPourUnChampion</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,14 +17,7 @@
         {% for question in questions %}
             <tr>
                 <td>{{ question.id }}</td>
-                <td>{{ question.question }}</td>
-                <td>
-                    {% if question.sujetFk.titre is defined %}
-                    {{ question.sujetFk.titre }}
-                    {% endif %}
-                </td>
-
-
+                <td>{{ question.questionPourUnChampion }}</td>
                 <td>
                     <a href="{{ path('question_show', {'id': question.id}) }}">show</a>
                     <a href="{{ path('question_edit', {'id': question.id}) }}">edit</a>

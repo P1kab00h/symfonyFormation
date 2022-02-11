@@ -16,7 +16,7 @@ class Voiture
     #[ORM\Column(type: 'string', length: 100)]
     private $nom;
 
-    #[ORM\ManyToOne(targetEntity: Marque::class, inversedBy: 'voiture')]
+    #[ORM\ManyToOne(targetEntity: Marques::class, inversedBy: 'voitures')]
     #[ORM\JoinColumn(nullable: true)]
     private $marque;
 
@@ -30,6 +30,7 @@ class Voiture
         return $this->nom;
     }
 
+
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
@@ -37,12 +38,12 @@ class Voiture
         return $this;
     }
 
-    public function getMarque(): ?Marque
+    public function getMarque(): ?Marques
     {
         return $this->marque;
     }
 
-    public function setMarque(?Marque $marque): self
+    public function setMarque(?Marques $marque): self
     {
         $this->marque = $marque;
 

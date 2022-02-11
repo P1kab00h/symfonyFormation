@@ -19,14 +19,17 @@ class VoitureRepository extends ServiceEntityRepository
         parent::__construct($registry, Voiture::class);
     }
 
-    public function deleteThreeCarsRepo()
+    public function listeTroisVoitures()
     {
-        return $this->createQueryBuilder('v')
+        // on aurait pu utiliser la méthode findBy([], 'DESC', 3)
+        $result = $this->createQueryBuilder('v')
             ->orderBy('v.id', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult()
             ;
+
+        return $result;
     }
 
     // /**
@@ -46,15 +49,15 @@ class VoitureRepository extends ServiceEntityRepository
     }
     */
 
-
-/*    public function findOneBySomeField($value): ?Voiture
+    /*
+    public function findOneBySomeField($value): ?Voiture
     {
         return $this->createQueryBuilder('v')
-            ->andWhere('v.id = :val')
+            ->andWhere('v.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
-    }*/
-
+    }
+    */
 }

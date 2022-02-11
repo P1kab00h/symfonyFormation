@@ -42,7 +42,7 @@ class SujetController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'sujet_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'sujet_show', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function show(Sujet $sujet): Response
     {
         return $this->render('sujet/show.html.twig', [

@@ -14,36 +14,37 @@ class Reponse
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $reponse;
+    private $nom;
 
     #[ORM\ManyToOne(targetEntity: Question::class, inversedBy: 'reponses')]
-    private $question_fk;
+    #[ORM\JoinColumn(nullable: false)]
+    private $questions;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getReponse(): ?string
+    public function getNom(): ?string
     {
-        return $this->reponse;
+        return $this->nom;
     }
 
-    public function setReponse(string $reponse): self
+    public function setNom(string $nom): self
     {
-        $this->reponse = $reponse;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getQuestionFk(): ?Question
+    public function getQuestions(): ?Question
     {
-        return $this->question_fk;
+        return $this->questions;
     }
 
-    public function setQuestionFk(?Question $question_fk): self
+    public function setQuestions(?Question $questions): self
     {
-        $this->question_fk = $question_fk;
+        $this->questions = $questions;
 
         return $this;
     }
