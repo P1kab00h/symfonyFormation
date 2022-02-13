@@ -3,15 +3,31 @@
 {% block title %}Mise à jour utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Mise à jour utilisateur</h1>
-
-    {{ form_start(updateUser) }}
-        {{ form_row(updateUser.email) }}
-        {{ form_row(updateUser.plainPassword, {
-            label: 'Password'
-        }) }}
+<form method="post">
+    <div class="grix xs4 sm2 gutter-xs4 container">
+        <div class="card shadow-1 rounded-3">
+            <div class="card-content xs4">
+                <div class="card-header xs4"><h1>Mise à jour utilisateur</h1></div>
 
 
-        <button type="submit" class="btn">Mise à jour</button>
-    {{ form_end(updateUser) }}
+                {{ form_start(updateUser) }}
+                <div class="xs1"> {{ form_row(updateUser.email) }} </div>
+                <div class="xs1"> {{ form_row(updateUser.plainPassword, {
+                        label: 'Password'
+                    }) }} </div>
+{#                <div class="xs1"> {{ form_row(registrationForm.name) }} </div>
+                <div class="xs1"> {{ form_row(registrationForm.firstname) }} </div>
+
+
+
+                {{ form_row(registrationForm.agreeTerms) }}#}
+
+                <button class="btn shadow-1 rounded-1 outline opening txt-blue" type="submit"><span class="outline-text">Mise à jour</span></button>
+
+                {{ form_end(updateUser) }}
+
+            </div>
+        </div>
+    </div>
+</form>
 {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'user.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+    <h1>Gestion de votre compte</h1>
+
+    <div class="grix xs4 sm2 gutter-xs4 container">
+        <div class="card shadow-1 rounded-3">
+            <div class="card-content xs4">
+                <div class="card-header xs4"><h2>Profil de {{ app.user.firstname}} {{ app.user.name}} :</h2></div>
+                <div class="xs1">Nom :</div>
+                <div class="xs1">{{ app.user.name }}</div>
+                <div class="xs1">Prénom :</div>
+                <div class="xs1">{{ app.user.firstname }}</div>
+                <div class="xs1">email :</div>
+                <div class="xs1">{{  app.user.email }}</div>
+                <div class="col-xs4">
+
+{#                    TODO : Créer le lien sur le bouton pour la fiche modification #}
+                    {#onclick="window.location.href = '{{ path('updateUser', {'id': app.user.id }) }}';"#}
+                    <button class="btn shadow-1 rounded-1 outline opening txt-blue"><span class="outline-text"><a href="{{ path('updateUser', {'id': app.user.id }) }}">Modification Profil</a></span></button>
+
+                    <button class="btn shadow-1 rounded-1 outline opening txt-blue"><span class="outline-text">Modification Mot de passe</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#
+
+<div class="grix xs4 sm2 gutter-xs4 container">
+    <div class="card shadow-1 rounded-3">
+        <div class="card-content xs4">
+            <div class="card-header xs4"><h2>Annonces de {{ app.user.firstname}} {{ app.user.name}} ({{ app.user.annonces|length }}):</h2></div>
+                {% for annonce in app.user.annonces %}
+
+                    <div class="xs1">Titre :</div>
+                    <div class="xs3">{{ annnonce.title }}</div>
+
+                {% endfor %}
+            </div>
+        </div>
+        </div>
+    </div>
+#}
+
+            {% endblock %}
