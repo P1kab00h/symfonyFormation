@@ -20,18 +20,29 @@
 <header>
     <nav class="navbar-fixed ">
         <nav class="navbar shadow-1 airforce txt-white">
-        <a href="{{ path('acceuil') }}" {#target="_blank"#} class="navbar-brand">Alkas new new new Project</a>
+        <a href="{{ path('acceuil') }}" {#target="_blank"#} class="navbar-brand navbar-link">Alkas new new new Project</a>
         <div class="navbar-menu ml-auto">
-            <a class="navbar-link" href="/marques">Marques</a>
-            <a class="navbar-link" href="/voiture">Voitures</a>
-            <a class="navbar-link" href="/sujet">QCM</a>
-{#            <a class="navbar-link" href="/login">Connexion</a>
-            <a class="navbar-link" href="/logout">Deconnexion</a>#}
 
-            {#TODO : Demander à Laurent comment faire fonctionner l'affichage conditionnel dans cette situation :#}
-            {#                            {% if app.user.roles is not null %}
-                            <a class="nav-link" href="{{ path('updateUser', {'id': app.user.id}) }}">Votre compte</a>
-                            {% endif %}#}
+
+
+            <div class="d-flex">
+                <div class="dropdown ml-auto" id="example-dropdown" data-ax="dropdown">
+                    <a  class="navbar-link dropdown-trigger airforce txt-white">
+                        Nos Fonctions
+                    </a>
+                    <div class="dropdown-content white right-aligned shadow-1 rounded-1">
+                        <a class="dropdown-item" href="/marques">Marques</a>
+                        <a class="dropdown-item" href="/voiture">Voitures</a>
+                        <a class="dropdown-item" href="/sujet">QCM</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
         </nav>
     </nav>
@@ -46,8 +57,15 @@
 {#    <a href="" class="sidenav-link">Mes annonces</a>#}
 
     <br>
-    <a class="sidenav-link" href="/login">Connexion</a>
-    <a class="sidenav-link" href="/logout">Deconnexion</a>
+{#    <a class="sidenav-link" href="/login">Connexion</a>
+    <a class="sidenav-link" href="/logout">Deconnexion</a>#}
+
+
+    {% if app.user.id is defined %}
+        <a class="sidenav-link navbar-link" href="/logout">Deconnexion</a>
+    {% else %}
+        <a class="sidenav-link navbar-link" href="/login">Connexion</a>
+    {% endif %}
 </div>
 
 <main>

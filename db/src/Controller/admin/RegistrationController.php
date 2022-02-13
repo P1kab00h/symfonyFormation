@@ -81,8 +81,8 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('voiture_index');
+            $this->addFlash('message', 'Votre profil a été mis à jour');
+            return $this->redirectToRoute('user');
         }
 
         return $this->render('registration/updateUser.twig', [

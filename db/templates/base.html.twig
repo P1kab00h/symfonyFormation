@@ -22,41 +22,45 @@
         <nav class="navbar shadow-1 airforce txt-white">
         <a href="{{ path('acceuil') }}" {#target="_blank"#} class="navbar-brand">Alkas new new new Project</a>
         <div class="navbar-menu ml-auto">
-{#            <a class="navbar-link" href="/marques">Marques</a>
-            <a class="navbar-link" href="/voiture">Voitures</a>
-            <a class="navbar-link" href="/sujet">QCM</a>#}
-            <a class="navbar-link" href="/login">Connexion</a>
+            {% if app.user.id is defined %}
             <a class="navbar-link" href="/logout">Deconnexion</a>
+            {% else %}
+                <a class="navbar-link" href="/login">Connexion</a>
+            {% endif %}
 
-            {#TODO : Demander à Laurent comment faire fonctionner l'affichage conditionnel dans cette situation :#}
-            {#                            {% if app.user.roles is not null %}
-                            <a class="nav-link" href="{{ path('updateUser', {'id': app.user.id}) }}">Votre compte</a>
-                            {% endif %}#}
+
+            <a data-target="example-sidenav" class="navbar-link press sidenav-trigger {#mx-auto#} airforce txt-white">
+                Nos fonctions
+            </a>
+
+
         </div>
         </nav>
     </nav>
 </header>
 
-<div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed grey light-4">
+<div id="example-sidenav" class="sidenav shadow-1 grey" data-ax="sidenav" class="sidenav shadow-1 large fixed">>
     <div class="sidenav-header">
-        <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
-       <a href="/user"> <img class="sidenav-logo dropshadow-1" src="{{ asset('css/My_Monkey_darkBlueII.png') }}" alt="Logo" /> </a>
+        {#<button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>#}
+        <a href="/user"> <img class="sidenav-logo dropshadow-1" src="{{ asset('css/My_Monkey_darkBlueII.png') }}" alt="Logo" /> </a>
     </div>
-    <a class="sidenav-link" href="/marques">Marques</a>
-    <a class="sidenav-link" href="/voiture">Voitures</a>
-    <a class="sidenav-link" href="/sujet">QCM</a>
-{#    <a class="navbar-link" href="/login">Connexion</a>
-    <a class="navbar-link" href="/logout">Deconnexion</a>#}
+    <a href="#" class="collapsible-trigger sidenav-link" data-target="example-collapsible">Nos véhicules</a>
+    <div>
+        <div class="collapsible" id="example-collapsible" data-ax="collapsible">
+            <a href="/marques" class="sidenav-link">Marques</a>
+            <a href="/voiture" class="sidenav-link">Voitures</a>
+        </div>
+    </div>
+
+    <a href="/sujet" class="sidenav-link">QCM</a>
+
+
 </div>
 
 <main>
 
     {% block body %}{% endblock %}
 
-{#    <button data-target="example-sidenav"
-            class="btn rounded-1 press amaranth dark-1 sidenav-trigger hide-md-up">
-        Open sidenav
-    </button>#}
 </main>
 
 
