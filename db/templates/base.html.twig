@@ -22,6 +22,7 @@
         <nav class="navbar shadow-1 airforce txt-white">
         <a href="{{ path('acceuil') }}" {#target="_blank"#} class="navbar-brand">Alkas new new new Project</a>
         <div class="navbar-menu ml-auto">
+
             {% if app.user.id is defined %}
             <a class="navbar-link" href="/logout">Deconnexion</a>
             {% else %}
