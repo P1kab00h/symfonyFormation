@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Voiture;
 use App\Form\VoitureType;
+use App\Repository\MarquesRepository;
 use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -29,13 +30,18 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/exo', name: 'exo')]
-    public function exo(EntityManagerInterface $entityManager): Response
+    public function exo(EntityManagerInterface $entityManager, MarquesRepository $marquesRepository): Response
     {
+        $marque = $marquesRepository->findBy(['id' => 1]);
+
         $voiture = new Voiture();
         $voiture->setNom("V1");
+        $voiture->setMarque($marque[0]);
         $voiture2 = new Voiture();
         $voiture2->setNom("V2");
+        $voiture2->setMarque($marque[0]);
         $voiture3 = new Voiture();
+        $voiture3->setMarque($marque[0]);
         $voiture3->setNom("V3");
 
         $entityManager->persist($voiture);

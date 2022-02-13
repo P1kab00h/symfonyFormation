@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -55,9 +55,14 @@ class RegistrationController extends AbstractController
     public function updateUser(Request $request, User $user, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         /*Ajout d'un affinage afin que seul l'utilisateur concerné puisse modifier son compte ou l'admin*/
-        $userCurrent = $this->getUser();
-        if($userCurrent->getId() !== $user->getId() && !$this->isGranted('ROLE_ADMIN')) {
-            return $this->redirectToRoute('updateUser', ['id' => $userCurrent->getId()]);
+/*        $userCurrent = $this->getUser()->getId();*/
+//        La ligne suivante va faire ce que nous demandons, pour le bien de l'exercice on tente aussi de faire modifier le compte par les Admins (non correct pas RGPD)
+/*        if($this->getUser()->getId() !== $user->getId() && !$this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('updateUser', ['id' => $this->getUser()->getId()]);
+        }*/
+//      Ceci est la méthode plus juste
+        if($this->getUser()->getId() !== $user->getId()) {
+            return $this->redirectToRoute('updateUser', ['id' => $this->getUser()->getId()]);
         }
 
         //modification pour UpdateUserFormType
@@ -77,7 +82,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('voiture');
+            return $this->redirectToRoute('voiture_index');
         }
 
         return $this->render('registration/updateUser.twig', [
