@@ -5,6 +5,9 @@
 {% block body %}
     <h1>Edit Marques</h1>
 
+
+    <a href="{{ asset('upload/' ~ product.fichier) }}">View brochure (PDF)</a>
+
     {{ include('marques/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('marques_index') }}">back to list</a>

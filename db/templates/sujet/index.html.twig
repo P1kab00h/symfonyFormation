@@ -3,7 +3,15 @@
 {% block title %}Sujet index{% endblock %}
 
 {% block body %}
-    <h1>Sujet index</h1>
+
+
+
+<div class="grix xs4 sm2 gutter-xs4 container mt-auto">
+    <div class="card shadow-1 rounded-3">
+        <div class="card-content xs4">
+            <div class="card-header xs4">
+                <h1>Sujet index</h1>
+            </div>
 
     <table class="table">
         <thead>
@@ -31,5 +39,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('sujet_new') }}">Create new</a>
+    <a href="{{ path('sujet_new') }}" class="btn shadow-1 rounded-1 outline opening txt-">Create new</a>
+
+        </div>
+    </div>
+</div>
 {% endblock %}

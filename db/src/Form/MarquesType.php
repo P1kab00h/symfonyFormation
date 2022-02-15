@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Marques;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,9 @@ class MarquesType extends AbstractType
     {
         $builder
             ->add('nom')
+            ->add('fichier', FileType::class, [
+                'mapped' => false
+            ])
         ;
     }
 
