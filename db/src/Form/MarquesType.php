@@ -14,9 +14,6 @@ class MarquesType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('fichier', FileType::class, [
-                'mapped' => false
-            ])
         ;
     }
 

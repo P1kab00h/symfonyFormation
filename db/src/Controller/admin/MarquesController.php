@@ -64,13 +64,13 @@ class MarquesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var UploadedFile $fichier  */
+/*            /** @var UploadedFile $fichier  */
 /*            $fichier = $form->get('fichier')->getData();
               $telechargement->move($fichier);*/
-            $fichier = $form->get('fichier')->getData();
+ /*           $fichier = $form->get('fichier')->getData();
             if ($fichier) {
                 $fileUploader->upload($fichier);
-                           }
+                           }*/
 
             $entityManager->flush();
 
