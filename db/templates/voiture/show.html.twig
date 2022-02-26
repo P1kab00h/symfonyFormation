@@ -8,16 +8,27 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ voiture.id }}</td>
-            </tr>
-            <tr>
                 <th>Nom</th>
                 <td>{{ voiture.nom }}</td>
             </tr>
             <tr>
                 <th>Marque</th>
                 <td>{{ voiture.marque.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ voiture.content }}</td>
+            </tr>
+            <tr>
+                <th>Image(s)</th>
+                <td>
+                    {% for image in voiture.uploadImages %}
+                    <div>
+                        <img src="{{ asset('/upload/' ~ image.name) }}" alt="Image" width="150">
+                        {#<a href="{{ path('voiture_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>#}
+                    </div>
+                    {% endfor %}
+                </td>
             </tr>
         </tbody>
     </table>

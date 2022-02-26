@@ -1,4 +1,17 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
+
+        {# Vérifions si la route est bien 'voiture_edit', si c'est le cas nous afficherons les images, et la possibilitée de les supprimer #}
+        {# il aurrait été plus simple de placer directement dans edit, mais il est interressant de manipuler les conditions en twig #}
+        {% if app.request.attributes.get('_route') == 'voiture_edit' %}
+            <h2>Images</h2>
+            {% for image in voiture.uploadImages %}
+                <div>
+                    <img src="{{ asset('/upload/' ~ image.name) }}" alt="Image" width="150">
+                    <a href="{{ path('voiture_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+                </div>
+            {% endfor %}
+
+        {% endif %}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

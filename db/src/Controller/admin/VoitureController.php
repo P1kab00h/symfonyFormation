@@ -2,6 +2,8 @@
 
 namespace App\Controller\admin;
 
+use App\Entity\UploadImages;
+use App\Service\Telechargement;
 use App\Entity\Voiture;
 use App\Form\VoitureType;
 use App\Repository\MarquesRepository;
@@ -9,9 +11,11 @@ use App\Repository\VoitureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Image;
 
 #[Route('/voiture')]
 #[IsGranted("ROLE_USER")]
@@ -53,7 +57,7 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/new', name: 'voiture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Telechargement $telechargement): Response
     {
         // Dans le cadre d'un nouvel enregistrement :
         // on instancie une entité (ici une voiture)
@@ -66,6 +70,27 @@ class VoitureController extends AbstractController
 
         // on vérifie que le formulaire est envoyé et validé
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // gestion des images (on récupère les images transmises)
+            // dans la variables nous allons récupérer dans le form sous la propriétée 'images' les datas
+            $images = $form->get('images')->getData();
+            //$image = $form->get('images')->getData();
+
+            if ($images) {
+            // Une boucle sera nécessaire sur les images (afin de gérer l'ajout multiple)
+//               foreach ($images as $image){
+
+                // On stocke le nom de l'image dans la BDD (pour rappel nous ne stockons pas de PJ en BDD)
+                // instance de UploadImages
+                $img = new UploadImages();
+                // On attribut un nom qui sera alors inscrit en BDD (nous utilisons la variable $fichier cf plus haut)
+                //puis on upload l'image avec la method créé
+                $voitureImageFileName = $telechargement->upload($image);
+                $img->setName($voitureImageFileName);
+                $voiture->addUploadImage($img);
+
+ //               }
+            }
             // Préparation de l'enregistrement dans notre base de donnée qui aura pour paramètre l'entité créé précédemment
             $entityManager->persist($voiture);
             // puis on enregistre tout ce que l'on a persisté
@@ -133,14 +158,29 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'voiture_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Voiture $voiture, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Voiture $voiture, EntityManagerInterface $entityManager, Telechargement $telechargement): Response
     {
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
 
+            $images = $form->get('images')->getData();
+            //$image = $form->get('images')->getData();
+
+            if ($images) {
+                // Une boucle sera nécessaire sur les images (afin de gérer l'ajout multiple)
+                //              foreach ($images as $image){
+
+                $img = new UploadImages();
+
+                $voitureImageFileName = $telechargement->upload($images);
+                $img->setName($voitureImageFileName);
+                $voiture->addUploadImage($img);
+
+            }
+
+            $entityManager->flush();
             return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -161,5 +201,25 @@ class VoitureController extends AbstractController
         return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/supprime_image/{id}', name: 'voiture_image_delete', methods: ['DELETE'])]
+    public function deleteImage(UploadImages $images, Request $request, EntityManagerInterface $entityManager) {
 
+        $data = json_decode($request->getContent(), true);
+
+        // vérification de la validité du token
+        if($this->isCsrfTokenValid('delete'.$images->getId(), $data['_token'])){
+            // récupération du nom de l'image
+            $nom = $images->getName();
+            // nous retirons le lien entre l'image et la bdd
+            unlink($this->getParameter('upload_directory').'/'.$nom);
+            // Puis nous supprimons l'image en BDD
+            $entityManager->remove($images);
+            $entityManager->flush();
+
+            // Réponse en json
+            return new JsonResponse(['succes' => 1]);
+        } else {
+            return  new JsonResponse(['error' => 'Token Invalide'], 400);
+        }
+    }
 }
