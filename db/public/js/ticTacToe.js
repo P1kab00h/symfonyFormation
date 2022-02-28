@@ -50,6 +50,8 @@ const status = document.querySelector("h3");
 let isGameActive = true;
 let joueurActif = 'X';
 
+
+
 // nous permettra d'enregistrer le statut du jeu => soit le nombre de coup joué, sa nature, sa position dans la grille
 // L'information sera de type suivant ==>
 // ["", "X", "O", "", "X", "", "X", "", "O"] par exemple ou les cases une fois remplie ne devront plus être jouable
@@ -100,7 +102,7 @@ function clickCellManagement() {
     }
     // Sinon nous allons remplir le tableau gameStatus avec l'information figurant le joueur actif (soit X ou O)
     gameStatus[cellIndex] = joueurActif;
-    // Dans le même temps nous allons ajouter à this (la case cliqué) le joueurActif
+    // Dans le même temps nous allons ajouter à this (la case cliqué) le signe (X || O) du joueurActif
     this.innerHTML = joueurActif;
 
 
