@@ -23,6 +23,7 @@
             <tr>
 
                 <th>Nom</th>
+                <th>test</th>
                 <th>Marque</th>
                 <th>Description</th>
             </tr>
@@ -31,11 +32,19 @@
         {% for voiture in voitures %}
             <tr>
                 <td>{{ voiture.nom }}</td>
+                <td>{% for image in voiture.uploadImages %}
+                        <div>
+                            <img src="{{ asset('/upload/' ~ image.name) }}" alt="Image" width="150">
+                            {#<a href="{{ path('voiture_image_delete', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>#}
+                        </div>
+                    {% endfor %}
+                </td>
                 <td>{{ voiture.marque.nom }}</td>
                 <td>{{ voiture.content }}</td>
                 <td>
-                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
-                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
+{#                    <button class="btn"><a href="{{ path('voiture_show', {'nameSlugger': voiture.nameSlugger}) }}">show</a></button>#}
+                    <button class="btn"><a href="{{ path('voiture_edit', {'id': voiture.id}) }}" class="btn">edit</a>
+                    {{ include('voiture/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}

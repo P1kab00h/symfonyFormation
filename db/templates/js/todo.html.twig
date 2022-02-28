@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello JsController!{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{# La ligne suivante nous permettra d charger notre script des.js #}
+    <script defer src="{{ asset('js/todo.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

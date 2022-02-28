@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Constraints\Image;
 
 #[Route('/voiture')]
@@ -57,7 +58,7 @@ class VoitureController extends AbstractController
     }
 
     #[Route('/new', name: 'voiture_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, Telechargement $telechargement): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, Telechargement $telechargement, SluggerInterface $slugger): Response
     {
         // Dans le cadre d'un nouvel enregistrement :
         // on instancie une entité (ici une voiture)
@@ -85,12 +86,15 @@ class VoitureController extends AbstractController
                 $img = new UploadImages();
                 // On attribut un nom qui sera alors inscrit en BDD (nous utilisons la variable $fichier cf plus haut)
                 //puis on upload l'image avec la method créé
-                $voitureImageFileName = $telechargement->upload($image);
+                $voitureImageFileName = $telechargement->upload($images);
                 $img->setName($voitureImageFileName);
                 $voiture->addUploadImage($img);
 
  //               }
             }
+
+            $voiture -> setNameSlugger($slugger->slug($voiture->getNom()));
+
             // Préparation de l'enregistrement dans notre base de donnée qui aura pour paramètre l'entité créé précédemment
             $entityManager->persist($voiture);
             // puis on enregistre tout ce que l'on a persisté
@@ -149,16 +153,18 @@ class VoitureController extends AbstractController
         return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}', name: 'voiture_show', methods: ['GET'])]
+    #[Route('/{nameSlugger}', name: 'voiture_show', methods: ['GET'])]
     public function show(Voiture $voiture): Response
     {
+/*        $voiture -> setNom($slugger->slug($voiture->getNom()));
+        dd($voiture);*/
         return $this->render('voiture/show.html.twig', [
             'voiture' => $voiture,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'voiture_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Voiture $voiture, EntityManagerInterface $entityManager, Telechargement $telechargement): Response
+    public function edit(Request $request, Voiture $voiture, EntityManagerInterface $entityManager, Telechargement $telechargement, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
@@ -180,6 +186,9 @@ class VoitureController extends AbstractController
 
             }
 
+            $voiture -> setNameSlugger($slugger->slug($voiture->getNom()));
+
+            $entityManager->persist($voiture);
             $entityManager->flush();
             return $this->redirectToRoute('voiture_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -28,6 +28,9 @@ class Voiture
     #[ORM\OneToMany(mappedBy: 'voiture', targetEntity: UploadImages::class, orphanRemoval: true, cascade:  ["persist"])]
     private $uploadImages;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $nameSlugger;
+
     public function __construct()
     {
         $this->uploadImages = new ArrayCollection();
@@ -101,6 +104,18 @@ class Voiture
                 $uploadImage->setVoiture(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNameSlugger(): ?string
+    {
+        return $this->nameSlugger;
+    }
+
+    public function setNameSlugger(?string $nameSlugger): self
+    {
+        $this->nameSlugger = $nameSlugger;
 
         return $this;
     }

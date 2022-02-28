@@ -15,4 +15,27 @@ class JsController extends AbstractController
             'controller_name' => 'JsController',
         ]);
     }
+    #[Route('/des', name: 'des')]
+    public function des(): Response
+    {
+        return $this->render('js/des.html.twig', [
+            'controller_name' => 'DesController'
+        ]);
+    }
+
+    #[Route('/tictactoe', name: 'tictactoe')]
+    public function tictactoe(): Response
+    {
+        return $this->render('js/tictactoe.html.twig', [
+            'controller_name' => 'tictactoe'
+        ]);
+    }
+
+    #[Route('/todo', name: 'todo')]
+    public function todo(): Response
+    {
+        return $this->render('js/todo.html.twig', [
+            'controller_name' => 'todo'
+        ]);
+    }
 }
