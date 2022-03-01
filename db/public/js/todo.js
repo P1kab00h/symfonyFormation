@@ -6,12 +6,12 @@ let oTodoPrompt = document.createElement('input');
 let oButtonAddTask = document.createElement('button');
 let oToDo = document.createElement('p');
 let oToDoList = document.createElement('ul');
-let oDone = document.createElement('p');
+let oDone = document.createElement('div');
 let oDoneList = document.createElement('ul');
 
 
 oContainer.classList.add('container-sm');
-oContainer.innerHTML = '<h1>Tache à faire</h1>';
+oContainer.innerHTML = '<h1>Nouvelle tâche</h1>';
 
 oDivTodoPrompt.classList.add('col-sm-2');
 oTodoPrompt.classList.add('form-control');
@@ -44,19 +44,51 @@ function addTask() {
     oToDoList.appendChild(oLiToDoList);
 
     const oButtonDeleteTask = document.createElement('button');
-    oButtonDeleteTask.innerText = 'Suppression';
+    oButtonDeleteTask.innerText = 'Supprimer';
     oLiToDoList.appendChild(oButtonDeleteTask);
     oButtonDeleteTask.addEventListener("click", () => {
         oLiToDoList.remove();
     });
 
+    let oLiDoneList = document.createElement('li');
     const oButtonDoneTask = document.createElement('button');
+    const oButtonDeleteDoneTask = document.createElement('button');
+    const oButtonUndoTask = document.createElement('button');
+
+
     oButtonDoneTask.innerText = 'Mission Accomplie !';
+    oButtonDeleteDoneTask.innerText = 'Supprimer';
+    oButtonUndoTask.innerText = 'annuler';
     oLiToDoList.appendChild(oButtonDoneTask);
     oButtonDoneTask.addEventListener("click", () => {
-        oDone.innerHTML = '<h3>Tâche(s) réalisée(s)</h3>'
+        oDone.innerHTML = '<h3>Tâche(s) réalisée(s)</h3>';
+        oDone.className = 'done-task';
+        oContainer.appendChild(oDone);
+        console.log(oLiToDoList);
 
-        oDoneList.appendChild(oLiToDoList);
+
+        oLiDoneList.innerHTML = oLiToDoList.firstChild.textContent;
+
+        oContainer.appendChild(oDoneList);
+        oDoneList.appendChild(oLiDoneList);
+        oLiDoneList.appendChild(oButtonDeleteDoneTask);
+        oLiDoneList.appendChild(oButtonUndoTask);
+        oLiToDoList.remove();
+        oButtonDeleteDoneTask.addEventListener("click", () => {
+            oLiDoneList.remove();
+        });
+
+        oButtonUndoTask.addEventListener('click', () => {
+            oLiToDoList.innerHTML = oLiDoneList.firstChild.textContent;
+            oToDoList.appendChild(oLiToDoList);
+            oLiToDoList.appendChild(oButtonDeleteTask);
+            oLiToDoList.appendChild(oButtonDoneTask);
+
+            oLiDoneList.remove();
+
+        });
+
+
     })
 
 
