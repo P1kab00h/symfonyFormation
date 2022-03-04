@@ -11,7 +11,7 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow: hidden;
+/*    overflow: hidden;*/
     margin: 0;
     background-color: #DDDDDD;
 }
@@ -25,7 +25,7 @@ section {
     display: grid;
     grid-template-columns: repeat(3, auto);
     width: 306px;
-    margin: 50px auto;
+    margin: 5px auto;
 }
 
 

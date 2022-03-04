@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    {# La ligne suivante nous permettra d charger notre script des.js #}
+{#
+    AVANT ===>
+    <script defer src="{{ asset('js/classJs/Des.js') }}"></script>
+    <script defer src="{{ asset('js/classJs/ToDoList.js') }}"></script>
+    <script defer src="{{ asset('js/classJs/Tictactoe.js') }}"></script>
+    <script defer src="{{ asset('js/classJs/Chifoumi.js') }}"></script>
+    <script defer src="{{ asset('js/classJs/ChifoumiBis.js') }}"></script>
+
+#}
+
+{# MAINTENANT ==> #}
+    <script type="module" src="{{ asset('/js/importExportClass.js') }}"></script>
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="card">
+        <h5 class="card-header">Dédé</h5>
+        <div class="card-body">
+            <div class="col-sm-2">
+                <input id="dice" type="text" name="dice" class="form-control">
+                <button id="throwDice" class="btn btn-primary m-1">Lancer les dés</button>
+                <p id="result"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="todo" class="card">
+        <h5 class="card-header">ToDo list</h5>
+        <div class="card-body">
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+
+    <div id="chifoumi" class="card">
+        <h5 class="card-header">ChiFuMi</h5>
+        <div class="card-body">
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+
+    <div id="tictactoe" class="card">
+        <h5 class="card-header">TicTacToe</h5>
+        <div class="card-body">
+            <div class="col-sm-2">
+            </div>
+        </div>
+    </div>
+
+{#Test inclusion de mon chifoumi#}
+    <div id="chifoumiBis" class="card">
+        <h5 class="card-header">Best Chifoumi</h5>
+        <div class="card-body">
+
+                <h3>Choix du joueur :</h3>
+                <ul id="playerChoicebuttonst">
+                    <button class="btn btn-outline-primary" id="pierre">Pierre</button>
+                    <button class="btn btn-outline-primary" id="feuille">Feuille</button>
+                    <button class="btn btn-outline-primary" id="ciseaux">Ciseaux</button>
+                </ul>
+
+                <h3 class="mb-5">Choix de l'ordinateur :</h3>
+                <p id="computerChoice"></p>
+
+                <h3 class="mb-5">Résultat :</h3>
+                <p id="resultat"></p>
+
+                <div class="row gx-5">
+                    <h3 class="mb-5"> Score :</h3>
+                    <div class="col-6">
+                        <h4 class="px-2">Joueur</h4>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="px-2">Ordinateur</h4>
+                    </div>
+                    <div class="col-6">
+                        <p class="px-2" id="scorePlayer"></p>
+                    </div>
+                    <div class="col-6">
+                        <p class="px-2" id="scoreComputer"></p>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

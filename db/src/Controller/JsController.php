@@ -15,6 +15,7 @@ class JsController extends AbstractController
             'controller_name' => 'JsController',
         ]);
     }
+
     #[Route('/des', name: 'des')]
     public function des(): Response
     {
@@ -38,4 +39,26 @@ class JsController extends AbstractController
             'controller_name' => 'todo'
         ]);
     }
+
+    #[Route('/mesFonctionsCoule', name: 'mesFonctionsCoule')]
+    public function mesClass(): Response
+    {
+        return $this->render('js/mesFonctionsCoule.html.twig', [
+        ]);
+    }
+
+    #[Route('/chifourmi', name: 'chifoumi')]
+    public function chifoumi(): Response
+    {
+        return $this->render('js/chifoumi.html.twig', [
+        ]);
+    }
+
+    #[Route('/tictactoeClass', name: 'tictactoe_class')]
+    public function tictactoeClass(): Response
+    {
+        return $this->render('js/tictactoeClass.html.twig', [
+        ]);
+    }
+
 }

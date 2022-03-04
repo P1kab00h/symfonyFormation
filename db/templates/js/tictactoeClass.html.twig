@@ -4,7 +4,10 @@
 {% block javascripts %}
     {{ parent() }}
 {# La ligne suivante nous permettra d charger notre script tictactoe.js #}
-    <script defer src="{{ asset('js/tictactoe.js') }}"></script>
+    <script defer src="{{ asset('js/classJs/Tictactoejs') }}"></script>
+
+
+    <script defer src="{{ asset('js/tictactoeClass.js') }}"></script>
 
 {% endblock %}
 
