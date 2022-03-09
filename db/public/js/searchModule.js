@@ -14,7 +14,13 @@ let linkTag = searchWrapper.querySelector("a");
 let weblink;
 
 
-export function ajaxSansFrotter() {
+export function searchModule() {
+
+
+
+
+
+
     fetch("https://randomuser.me/api/?results=10&nat=fr")
         //le then attend toujours une fonction (ici fléché)
         .then((r) => {
@@ -122,12 +128,8 @@ function show(listUsers, el) {
     suggestionsArray = suggestionsArray.map((data) => {
         return data = `<li>${data}</li>`;
     })
-
-
-
 }
 
-console.log(suggestionsArray);
 
 
 function showSuggestions(list) {
@@ -147,31 +149,3 @@ function showSuggestions(list) {
     oSuggBox.innerHTML = listData;
 }
 
-
-/*
-export function ajaxSansFrotter() {
-
-    let returnData = [];
-
-    fetch("https://randomuser.me/api/?results=100&nat=fr",
-        {
-            method: "get"
-        }).then((r) => {
-        if (r.ok) {
-            r.json().then((listUsers) => {
-                for (let i = 0; i < listUsers.results.length; i++) {
-                    document.getElementById('cardHeaderRandomUser' + [i]).innerHTML = `<p> ${listUsers.results[i].name.title} ${listUsers.results[i].name.first} ${listUsers.results[i].name.last}</p>`;
-                    document.getElementById('randomuser' + [i]).innerHTML = `<img src=${listUsers.results[i].picture.large} alt="${listUsers.results[i].gender}"> <br> <p>${listUsers.results[i].email}<br>
-${listUsers.results[i].cell}</p>`;
-                    // on renseigne notre array pour faire la recherche dessus;
-                    returnData.push(listUsers.results[i].name.first);
-                    /!*console.log(returnData);*!/
-                }
-            });
-        } else {
-            document.getElementById('randomuser' + [i]).textContent = 'Some mistake seems to be here';
-        }
-    }).catch((e) => {
-        document.getElementById('randomuser' + [i]).textContent = e.message;
-    });
-}*/

@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}Voiture index{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+    <script type="module" src="{{ asset('/js/testSearchImport.js') }}"></script>
+
+{% endblock %}
+
 
 {% block body %}
     {% if is_granted('ROLE_ADMIN') %}
@@ -8,6 +20,24 @@
     {% endif %}
 
     <h1>Voiture index</h1>
+
+
+    <div class="wrapper">
+        <div class="search-input col-2 ">
+            <label for="search-tool">Entrer un Prénom ou un Nom</label>
+            <a href="" target="_blank" hidden></a>
+            <input id="search-tool" class="form-control" type="text" placeholder="Prénom où Nom ..."/>
+
+            <div class="autocom-box">
+                <!-- here list are inserted from javascript -->
+            </div>
+            <div class="icon"><i class="fas fa-search"></i></div>
+        </div>
+    </div>
+
+    <div id="userSearchDiv">
+    </div>
+
 
     {# read and display all flash messages #}
     {% for label, messages in app.flashes %}

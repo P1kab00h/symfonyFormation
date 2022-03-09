@@ -74,3 +74,4 @@ document.getElementById('search-tool').addEventListener('keyup',
    ajaxSansFrotter
 /!*   console.log(e);*!/
 );*/
+
