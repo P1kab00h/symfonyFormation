@@ -32,7 +32,7 @@ export default class Des
 // Pour chaque valeur dans dicelist ou i représentant l'index
         for(let i in diceList) {
             let diceValues = diceList[i].split('d');
-console.log(diceValues);
+/*console.log(diceValues);*/
             if (diceValues.length > 1) {
                 for(let i = 0; i < diceValues[0]; i++) {
                     total += Math.floor((Math.random() * diceValues[1]) + 1);

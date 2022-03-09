@@ -4,17 +4,16 @@
 {% block javascripts %}
     {{ parent() }}
     {# La ligne suivante nous permettra d charger notre script des.js #}
-{#
+    {#
     AVANT ===>
     <script defer src="{{ asset('js/classJs/Des.js') }}"></script>
     <script defer src="{{ asset('js/classJs/ToDoList.js') }}"></script>
     <script defer src="{{ asset('js/classJs/Tictactoe.js') }}"></script>
     <script defer src="{{ asset('js/classJs/Chifoumi.js') }}"></script>
     <script defer src="{{ asset('js/classJs/ChifoumiBis.js') }}"></script>
+    #}
 
-#}
-
-{# MAINTENANT ==> #}
+    {# MAINTENANT ==> #}
     <script type="module" src="{{ asset('/js/importExportClass.js') }}"></script>
 
 {% endblock %}
@@ -57,43 +56,59 @@
         </div>
     </div>
 
-{#Test inclusion de mon chifoumi#}
+    {# Test inclusion de mon chifoumi #}
     <div id="chifoumiBis" class="card">
         <h5 class="card-header">Best Chifoumi</h5>
         <div class="card-body">
 
-                <h3>Choix du joueur :</h3>
-                <ul id="playerChoicebuttonst">
-                    <button class="btn btn-outline-primary" id="pierre">Pierre</button>
-                    <button class="btn btn-outline-primary" id="feuille">Feuille</button>
-                    <button class="btn btn-outline-primary" id="ciseaux">Ciseaux</button>
-                </ul>
+            <h3>Choix du joueur :</h3>
+            <ul id="playerChoicebuttonst">
+                <button class="btn btn-outline-primary" id="pierre">Pierre</button>
+                <button class="btn btn-outline-primary" id="feuille">Feuille</button>
+                <button class="btn btn-outline-primary" id="ciseaux">Ciseaux</button>
+            </ul>
 
-                <h3 class="mb-5">Choix de l'ordinateur :</h3>
-                <p id="computerChoice"></p>
+            <h3 class="mb-5">Choix de l'ordinateur :</h3>
+            <p id="computerChoice"></p>
 
-                <h3 class="mb-5">Résultat :</h3>
-                <p id="resultat"></p>
+            <h3 class="mb-5">Résultat :</h3>
+            <p id="resultat"></p>
 
-                <div class="row gx-5">
-                    <h3 class="mb-5"> Score :</h3>
-                    <div class="col-6">
-                        <h4 class="px-2">Joueur</h4>
-                    </div>
-                    <div class="col-6">
-                        <h4 class="px-2">Ordinateur</h4>
-                    </div>
-                    <div class="col-6">
-                        <p class="px-2" id="scorePlayer"></p>
-                    </div>
-                    <div class="col-6">
-                        <p class="px-2" id="scoreComputer"></p>
-                    </div>
+            <div class="row gx-5">
+                <h3 class="mb-5"> Score :</h3>
+                <div class="col-6">
+                    <h4 class="px-2">Joueur</h4>
                 </div>
+                <div class="col-6">
+                    <h4 class="px-2">Ordinateur</h4>
+                </div>
+                <div class="col-6">
+                    <p class="px-2" id="scorePlayer"></p>
+                </div>
+                <div class="col-6">
+                    <p class="px-2" id="scoreComputer"></p>
+                </div>
+            </div>
 
         </div>
     </div>
 
 
+    <div class="col-2">
+        <label for="search-tool">Entrer un prénom</label>
+        <input id="search-tool" class="form-control" type="text" placeholder="Saisissez un prénom"/>
+    </div>
 
+    <div id="userSearchDiv">
+    </div>
+    {#
+    {% for i in 0..99 %}
+        <div id="randomuserCard" class="card">
+            <h5 class="card-header" id="cardHeaderRandomUser{{ i }}">random user</h5>
+            <div class="card-body">
+                <div class="col-sm-8" id="randomuser{{ i }}"></div>
+            </div>
+        </div>
+    {% endfor %}
+    #}
 {% endblock %}

@@ -10,7 +10,7 @@ let idDice = document.getElementById('dice');
 let idThrowDice = document.getElementById('throwDice');
 let idResult = document.getElementById('result');
 let oDes = new Des(idDice, idThrowDice, idResult);
-console.log(oDes)
+// console.log(oDes)
 oDes.ev();
 
 /*
@@ -53,19 +53,24 @@ let oChifumi = new Chifoumi(idChifumi);
 oChifumi.createDom();
 
 
-
 /*
 *
 * Chifoumi Bis
 * */
 // import avec alias pour le nom de la class (utilisé pour sa création)
 import {default as ChifoumiBis} from '/js/classJs/ChifoumiBis.js'
-
 let oChifoumiBis = new ChifoumiBis();
 oChifoumiBis.createDom();
 
 
 import {ajaxSansFrotter} from '/js/ajaxSuperPropre.js'
-
 ajaxSansFrotter();
 
+/*import SearchingMethod from '/js/classJs/searchingMethod.js'
+let searchingMethod = new SearchingMethod;*/
+
+/*
+document.getElementById('search-tool').addEventListener('keyup',
+   ajaxSansFrotter
+/!*   console.log(e);*!/
+);*/
