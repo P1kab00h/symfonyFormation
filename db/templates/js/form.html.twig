@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# La ligne suivante nous permettra d charger notre script des.js #}
+
+    <script defer src="{{ asset('js/form.js') }}"></script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+<div class="wrapper">
+    <div class="search-input col-3 ">
+
+        <form method="post" action="" novalidate>
+
+
+            <label for="nom">Entrer le nom</label>
+            <span class="nomDiv alert">
+            </span>
+            <input class="form-control border border-secondary m-1" type="text" name="nom" id="nom" value="">
+
+            <label for="prenom">Entrer le prénom</label>
+            <span class="prenomDiv alert"></span>
+            <input class="form-control border border-secondary m-1" type="text" name="prenom" id="prenom" value="">
+
+            <label for="email">Entrer l'email</label>
+            <span class="emailDiv alert"></span>
+            <input class="form-control border border-secondary m-1" type="email" name="email" id="email" value="">
+
+            <label for="telephone">Entrer le telephone</label>
+            <span class="telephoneDiv alert"></span>
+            <input class="form-control border border-secondary m-1" type="tel" name="telephone" id="telephone" value="">
+
+            <label for="pseudo">Entrer le pseudo</label>
+            <span class="pseudoDiv alert"></span>
+            <input class="form-control border border-secondary m-1" type="text" name="pseudo" id="pseudo" value="">
+
+            <label for="password">Entrer le mot de passe</label>
+            <span class="passwordDiv alert"></span>
+            <input class="form-control border border-secondary m-1" type="password" name="password" id="password"
+                   value="">
+
+            <input class="form-control btn btn-primary border border-primary m-1" type="submit" name="" value="Envoyer">
+        </form>
+
+        </div>
+        </div>
+
+        {% endblock %}
+
+

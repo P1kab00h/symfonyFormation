@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -59,6 +60,29 @@ class JsController extends AbstractController
     {
         return $this->render('js/tictactoeClass.html.twig', [
         ]);
+    }
+
+    #[Route('/form', name: 'formulaire')]
+    public function form(): Response
+    {
+        return $this->render('js/form.html.twig', [
+        ]);
+    }
+
+    #[Route('/form_complet', name: 'formulaire_complet')]
+    public function formComplet(): Response
+    {
+        return $this->render('js/formComplet.html.twig', [
+        ]);
+    }
+
+//    cette route est necessaire pour récupérer les données en json via un traitement ajax
+    #[Route('/traiteajax', name: 'traiteajax')]
+    public function traiteajax(Request $request): Response
+    {
+//        dd($request->request->all());
+        $data = [];
+        return $this->json($request->request.all());
     }
 
 }

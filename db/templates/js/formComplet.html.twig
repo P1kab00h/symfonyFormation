@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}form{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# La ligne suivante nous permettra d charger notre script des.js #}
+
+    <script defer src="{{ asset('js/formComplet.js') }}"></script>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    {# <div class="search-input"> #}
+    <form method="post" action="" novalidate>
+        <label for="nom">Entrer le nom</label>
+        <span class="nomDiv alert">
+            </span>
+        <input class="border border-secondary col-4" type="text" name="nom" id="nom" value="">
+
+        <div>
+            <label for="invertChoice">Inverser la sélection</label>
+            <input type="checkbox" name="invertChoice" id="invertChoice" value="invertChoice" required>
+        </div>
+
+        {# <label for="biere">Choisissez votre bière</label> #}
+        <select name="" id="biere">
+            <option value="">Choisissez votre bière</option>
+            <option value="adel">Adelscott</option>
+            <option value="leffe">Leffe</option>
+            <option value="IPA" selected>Punk IPA</option>
+            <option value="bud">Budweiser</option>
+        </select>
+        <div id="biereResult"></div>
+
+        <select name="" id="cocktail" multiple>
+            <option value="fraise">Fraise</option>
+            <option value="carotte">Carotte</option>
+            <option value="gingembre">Gingembre</option>
+            <option value="tabasco">Tabasco</option>
+        </select>
+        <div id="cocktailResult"></div>
+
+        <label for="femme">femme</label>
+        <input type="radio" name="sexe" id="femme" value="femme" required>
+        <label for="homme">homme</label>
+        <input type="radio" name="sexe" id="homme" value="homme" required>
+        <div id="sexResult"></div>
+
+        <div class="form-check">
+            <label for="voiture">voiture</label>
+            <input type="checkbox" name="vehicule" id="voiture" value="voiture" required checked>
+            <label for="velo">velo</label>
+            <input type="checkbox" name="vehicule" id="velo" value="velo" required>
+            <label for="trottinette">trottinette</label>
+            <input type="checkbox" name="vehicule" id="trottinette" value="trottinette" required checked>
+            <div id="vehiculeResult"></div>
+
+        </div>
+
+
+        <input class="btn btn-primary btn-sm border border-primary col-4" type="submit" name=""
+               value="Envoyer">
+    </form>
+
+
+{% endblock %}
+
+

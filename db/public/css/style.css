@@ -147,3 +147,11 @@ section {
     color: #644bff;
     cursor: pointer;
 }
+
+.form-control{
+    border: 1px solid blue;
+}
+
+.alert {
+    font-style: italic;
+}
