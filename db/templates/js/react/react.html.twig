@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello React!{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script defer src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script defer src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    {# Appel à Babel pour React #}
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    {# appel de notre premier script en react #}
+    <script defer type="text/babel" src="{{ asset('js/react/first.js') }}"></script>
+    {# La ligne suivante nous permettra d charger notre script calc.js #}
+{#    <script defer type="text/babel" src="{{ asset('js/react/calc.js') }}"></script>#}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div id="first"></div>
+
+    <div id="time"></div>
+
+{#    <div id="result"></div>#}
+
+    <div id="test"></div>
+
+    <div id="testresult"></div>
+
+
+
+    <div id="root"></div>
+
+{% endblock %}

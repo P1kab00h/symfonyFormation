@@ -7,66 +7,96 @@
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
     {% block stylesheets %}
-    <!-- Axentix CSS minified version -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.3.4/dist/css/axentix.min.css">
+        <!-- Axentix CSS minified version -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.3.4/dist/css/axentix.min.css">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+              crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
 
 
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    {% block javascripts %}{% endblock %}
+    {# <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> #}
+    {% block javascripts %}
+        <script defer src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% endblock %}
 
 </head>
 
-<body class="layout with-sidenav fixed-sidenav under-navbar">
+<body id="compo" class="layout with-sidenav fixed-sidenav under-navbar">
+
 <header>
-    <nav class="navbar-fixed ">
-        <nav class="navbar shadow-1 airforce txt-white">
-        <a href="{{ path('acceuil') }}" {#target="_blank"#} class="navbar-brand">Alkas new new new Project</a>
-        <div class="navbar-menu ml-auto">
 
-            {% if app.user.id is defined %}
-            <a class="navbar-link" href="/logout">Deconnexion</a>
-            {% else %}
-                <a class="navbar-link" href="/login">Connexion</a>
-            {% endif %}
+{#
+    <script>
+        const isConnected = {{ app.user }};
+        console.log(isConnected);
+    </script>
+#}
 
 
-            <a data-target="example-sidenav" class="navbar-link press sidenav-trigger {#mx-auto#} airforce txt-white">
-                Nos fonctions
-            </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img id="logo-main" src="css/My_Monkey_darkBlueII.png" width="150" alt="Logo Thing main logo"/>
+
+        <a class="navbar-brand" href="/user">Amazing navBar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./mesFonctionsCoule">Super fonctions Coule</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Des trucs variés
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/marques">Marques</a>
+                        <a class="dropdown-item" href="/voiture">Voitures</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/sujet">QCM</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/react">First</a>
+                        <a class="dropdown-item" href="/component">Page test component</a>
+                    </div>
+
+                </li>
+                <div>
+                    {% if app.user.id is defined %}
+                        <a class="nav-link my-2 my-lg-0" href="/logout">Deconnexion</a>
+                    {% else %}
+                        <a class="nav-link" href="/login">Connexion</a>
+                    {% endif %}
+                </div>
 
 
+{#                                       <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>#}
+            </ul>
+           {#                   <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>#}
         </div>
-        </nav>
     </nav>
+
 </header>
-
-<div id="example-sidenav" class="sidenav shadow-1 grey" data-ax="sidenav" class="sidenav shadow-1 large fixed">>
-    <div class="sidenav-header">
-        {#<button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>#}
-        <a href="/user"> <img class="sidenav-logo dropshadow-1" src="{{ asset('css/My_Monkey_darkBlueII.png') }}" alt="Logo" /> </a>
-    </div>
-    <a href="#" class="collapsible-trigger sidenav-link" data-target="example-collapsible">Nos véhicules</a>
-    <div>
-        <div class="collapsible" id="example-collapsible" data-ax="collapsible">
-            <a href="/marques" class="sidenav-link">Marques</a>
-            <a href="/voiture" class="sidenav-link">Voitures</a>
-        </div>
-    </div>
-
-    <a href="/sujet" class="sidenav-link">QCM</a>
-
-
-    <a href="/mesFonctionsCoule" class="sidenav-link">Divers Exercices</a>
-
-</div>
 
 <main class="container">
 
@@ -82,7 +112,7 @@
 <!-- Optional JavaScript -->
 <!-- Axentix JS minified version -->
 <script src="https://cdn.jsdelivr.net/npm/axentix@1.3.4/dist/js/axentix.min.js"></script>
-<script src="{{asset('js/script.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 
 
 </body>

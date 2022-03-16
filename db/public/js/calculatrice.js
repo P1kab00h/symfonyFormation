@@ -1,5 +1,6 @@
 // méthode usine à gaz
-/*
+// avec ajout de REACT et JSX
+
 
 let calculString = prompt("Saisissez votre calcul");
 
@@ -53,41 +54,51 @@ switch (operateur) {
         }
 
 }
-*/
 
 
-
-// Seconde méthode =>
-
-let calculString = prompt("Saisissez votre calcul");
-
-if (calculString.indexOf('+') !== -1)
-{
-    let operande = calculString.split('+');
-    let result = parseInt(operande[0]) + parseInt(operande[1]);
-    console.log(result);
-} else if (calculString.indexOf('-') !== -1)
-    {
-    let operande = calculString.split('-');
-    let result = parseInt(operande[0]) - parseInt(operande[1]);
-    console.log(result);
-} else if (calculString.indexOf('*') !== -1)
-    {
-    let operande = calculString.split('*');
-    let result = parseInt(operande[0]) * parseInt(operande[1]);
-    console.log(result);
-} else if (calculString.indexOf('/') !== -1)
-    {
-    let operande = calculString.split('/');
-        if (0 === parseInt(operande[1]))
-        {
-        console.log("Navré la divison par zéro n'est toujours pas possible ...");
-        } else {
-    let result = parseInt(operande[0]) / parseInt(operande[1]);
-    console.log(result);
-        }
-}
-
+//
+// // Seconde méthode , avec du REACT =>
+// let result;
+// let second;
+// let calculString = prompt("Saisissez votre calcul");
+//
+// if (calculString.indexOf('+') !== -1) {
+//     let operande = calculString.split('+');
+//     result = parseInt(operande[0]) + parseInt(operande[1]);
+//
+//     second = React.createElement('div', null, result);
+//     ReactDOM.render(second, document.getElementById('result'));
+//     console.log(result);
+// } else if (calculString.indexOf('-') !== -1) {
+//     let operande = calculString.split('-');
+//     result = parseInt(operande[0]) - parseInt(operande[1]);
+//
+//     second = React.createElement('div', null, result);
+//     ReactDOM.render(second, document.getElementById('result'));
+//     console.log(result);
+// } else if (calculString.indexOf('*') !== -1) {
+//     let operande = calculString.split('*');
+//     result = parseInt(operande[0]) * parseInt(operande[1]);
+//
+//     second = React.createElement('div', null, result);
+//     ReactDOM.render(second, document.getElementById('result'));
+//     console.log(result);
+// } else if (calculString.indexOf('/') !== -1) {
+//     let operande = calculString.split('/');
+//     if (0 === parseInt(operande[1])) {
+//         console.log("Navré la divison par zéro n'est toujours pas possible ...");
+//     } else {
+//         result = parseInt(operande[0]) / parseInt(operande[1]);
+//
+//
+//         second = React.createElement('div', null, result);
+//         ReactDOM.render(second, document.getElementById('result'));
+//         console.log(result);
+//
+//
+//     }
+// }
+//
 
 // Première méthode =>
 /*
