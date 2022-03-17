@@ -24,4 +24,12 @@ class ReactController extends AbstractController
         ]);
     }
 
+    #[Route('/formReact', name: 'formReact')]
+    public function formReact(): Response
+    {
+        return $this->render('js/react/formReact.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
+
 }

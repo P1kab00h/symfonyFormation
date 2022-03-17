@@ -38,6 +38,7 @@ function ActionLink() {
                 </div>
             </>
         }
+
         ReactDOM.render(<IsClick/>, document.getElementById('testresult'))
     }
 
@@ -61,39 +62,46 @@ ReactDOM.render(actionLink, document.getElementById('test'));
 class Toggle extends React.Component {
     // Nous intialisons un état local (this.state) et nous lions aussi des méthodes (this.handleClick = this.handleClick.bind(this))
     // le contructor est alors nécessaire
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
         // On ne doit pas appeler setState dans le constructor, on affecte donc l'état initial avec this.state
         // ici isToggleDay sera à true, soit 'Jour ☼' sur notre bouton
-        this.state = {isToggleDay: true};
+        this.state = {
+            isToggleDay: true,
+            toto: 'test',
+            };
+
+
         ///////////////////CAS 1//////////////avec le this.handleClick = this.handleClick.bind(this); /////////////////////////////
         // Ici une des méthodes possible consiste à lier (bind) la fonction handleClick avec le this de la class Toggle
         // en effet par défaut le this de handleClick sera sur la fonction elle-même est donc undifined
-       // this.handleClick = this.handleClick.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
+
     }
 
     // la fonction handleClick sera lancé au click sur le bouton
     // nous l'avons lié avec le this de la fonction
-    handleClick() {
+    handleClick = () => {
         //setState() va plannifier les modifications de l'état du composant
         // Ici par exemple nous allons jongler entre le true et le false pour isToggleDay
         this.setState(state => ({
-            isToggleDay: !state.isToggleDay
+            isToggleDay: !state.isToggleDay,
+            toto: !state.toto
         }));
+
     }
 
     ///////////////////CAS 1//////////////avec le this.handleClick = this.handleClick.bind(this); /////////////////////////////
-    // le render() est la seule méthoe à définir les autres sont optionnel
-/*    render() {
-        return (
-            // on retournera donc un bouton qui appelera notre method handleClick (au click)
-            <button onClick={this.handleClick}> {/!* Cette methode d'écriture sera utiliser dans le cs ou on lie avec le this avec bind dans le constructeur *!/}
-                {/!*Un opérateur ternaire si isToggleDay est à true alors le résultat sera jour, si c'est faux alors nuit *!/}
-                {this.state.isToggleDay ? 'Jour ☼' : 'Nuit ☾'}
-            </button>
-        );
-    }*/
+    // le render() est la seule méthode à définir les autres sont optionnel
+    /*    render() {
+            return (
+                // on retournera donc un bouton qui appelera notre method handleClick (au click)
+                <button onClick={this.handleClick}> {/!* Cette methode d'écriture sera utiliser dans le cs ou on lie avec le this avec bind dans le constructeur *!/}
+                    {/!*Un opérateur ternaire si isToggleDay est à true alors le résultat sera jour, si c'est faux alors nuit *!/}
+                    {this.state.isToggleDay ? 'Jour ☼' : 'Nuit ☾'}
+                </button>
+            );
+        }*/
 
     ///////////////////CAS 2///////////////////avec l'utilisation d'une fonction fléché dans le render ///////////////////////////////////////////
     // le render() est la seule méthoe à définir les autres sont optionnel
@@ -101,12 +109,14 @@ class Toggle extends React.Component {
         return (
             // on retournera donc un bouton qui appelera notre method handleClick (au click)
             // ici on utilise une fonction félché (n'a pas de this par défaut, donc prend celui de la class)
-            <button onClick={() => this.handleClick()}>
+            <button onClick={this.handleClick}>
                 {/*Un opérateur ternaire si isToggleDay est à true alors le résultat sera jour, si c'est faux alors nuit */}
                 {this.state.isToggleDay ? 'Jour ☼' : 'Nuit ☾'}
+                {this.state.toto ? 'test' : `t'es naze`}
             </button>
         );
     }
 }
+
 // le rendu de notre JSX sera possible dans le html avec la ligne suivante
-ReactDOM.render(<Toggle />,document.getElementById('root'));
+ReactDOM.render(<Toggle/>, document.getElementById('root'));
