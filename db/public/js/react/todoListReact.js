@@ -51,39 +51,32 @@ class TodoReact extends React.Component {
 
         let testArrayPush = this.state.todoArray;
 
-        let taskToDo = [];
-
 
         testArrayPush.push(testToPushArray);
         console.log(testArrayPush);
 
-
-        for (let i = 0; i < testArrayPush.length; i++) {
-            taskToDo =
-                <>
-                    <li>{testArrayPush[i]}</li>
-                </>
-        }
-
-
-
-/*        let taskToDo = <>
-            <li>{this.state.taskToAdd}
-                <button onClick={this.deleteTaskToDo} className="btn btn-danger ms-2 mt-1 mb-1 me-1">Supprimer</button>
-                <button onClick={this.doneTask} className="btn btn-success m-1">Mission Accomplie !</button>
-            </li>
-        </>*/
+        let taskToDo =
+            <>
+                {testArrayPush.map((task) => (
+                    <li>{task}
+                        <button onClick={this.deleteTaskToDo} className="btn btn-danger ms-2 mt-1 mb-1 me-1">Supprimer
+                        </button>
+                        <button onClick={this.doneTask} className="btn btn-success m-1">Mission Accomplie !</button>
+                    </li>
+                ))}
+            </>
+        console.log(taskToDo)
 
         this.setState({
             taskToDo: taskToDo
         });
-
-
-//        console.log(this.state.taskToAdd)
-
     }
 
     deleteTaskToDo = () => {
+
+
+
+
         this.setState({
             taskToDo: ''
         })
