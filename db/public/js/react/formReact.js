@@ -23,37 +23,44 @@ class Formulaire extends React.Component {
         this.setState({
             // [name]: value,
             [name]: target.value,
+            errorMessage: '',
+            styleName: {}
         });
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Création d'une method afin de tester nos champs, on testera le faite que le champ est rempli dans un premier temps et avec une longueur minimum
 //
-    errorMessageHandler(id, name, minLength = 3) {
+    errorMessageHandler(id, fieldName, minLength = 3) {
         let errorMessage = '';
         let el = document.getElementById(id);
         let errorColor = '#fedede';
+        let successColor = '#90EE90';
 
         if (el) {
             if (!el.value) {
                 el.style.backgroundColor = errorColor;
-                errorMessage += `Veuillez saisir le ${name} ! <br />`;
+                errorMessage += `Veuillez remplir le champ ${fieldName} ! <br />`;
+                this.setState({errorMessage});
             } else if (el.value.length < minLength) {
+                                // this.setState({styleName: {backgroundColor: errorColor}});
                 el.style.backgroundColor = errorColor;
-                errorMessage += `Le ${name} doit être supèrieur à ${minLength} <br/>`
+                errorMessage += `Le champ ${fieldName} doit être supèrieur à ${minLength} <br/>`;
+                this.setState({errorMessage});
             } else {
+                // this.setState({styleName: {backgroundColor: successColor}})
                 el.style.backgroundColor = '#90EE90'
             }
         }
-        console.log(errorMessage)
+        console.log(this)
         return errorMessage
     }
 // dans la continuité nous testons nos différents champs de formulaire
     testField = (e) => {
         e.preventDefault();
-        this.errorMessageHandler('nom', this.state.nom);
-        this.errorMessageHandler('prenom', this.state.prenom);
-        this.errorMessageHandler('email', this.state.email, 8);
+        this.errorMessageHandler('nom', 'nom');
+        this.errorMessageHandler('prenom', 'prenom');
+        this.errorMessageHandler('email', 'email', 8);
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,17 +86,17 @@ class Formulaire extends React.Component {
                             <span className="nomDiv alert">
             </span>
                             <input className="form-control border border-secondary m-1" type="text" name="nom" id='nom'
-                                   value={this.state.nom} onChange={this.changeNameForm}/>
+                                   value={this.state.nom} onChange={this.changeNameForm} /*style={this.state.styleName}*/ />
 
                             <label htmlFor="prenom">Entrer le prénom</label>
                             <span className="prenomDiv alert"></span>
                             <input className="form-control border border-secondary m-1" type="text" name="prenom"
-                                   id="prenom" value={this.state.prenom} onChange={this.changeNameForm}/>
+                                   id="prenom" value={this.state.prenom} onChange={this.changeNameForm} /*style={this.state.styleName}*/ />
 
                             <label htmlFor="email">Entrer l'email</label>
                             <span className="emailDiv alert"></span>
                             <input className="form-control border border-secondary m-1" type="email" name="email"
-                                   id="email" value={this.state.email} onChange={this.changeNameForm}/>
+                                   id="email" value={this.state.email} onChange={this.changeNameForm} /*style={this.state.styleName}*/ />
 
                             <input
                                 type='submit'
@@ -98,6 +105,9 @@ class Formulaire extends React.Component {
                                 //Ici au click nous testons nos champs avec la method 'testField', qui elle même appel la method 'errorMessageHandler'
                                 onClick={this.testField}
                             />
+
+
+                            <div>{this.state.errorMessage}</div>
                         </form>
                     </div>
                 </div>

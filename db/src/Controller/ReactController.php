@@ -32,4 +32,12 @@ class ReactController extends AbstractController
         ]);
     }
 
+    #[Route('/todoReact', name: 'todoReact')]
+    public function todoReact(): Response
+    {
+        return $this->render('js/react/todoReact.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
+
 }
