@@ -40,4 +40,12 @@ class ReactController extends AbstractController
         ]);
     }
 
+    #[Route('/hook', name: 'hook')]
+    public function hook(): Response
+    {
+        return $this->render('js/react/hook.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
+
 }

@@ -1,3 +1,5 @@
+import React from "react";
+
 function List({remove, completed, info, data})
 {
     return <>{data.map((todo, key) => {
@@ -32,7 +34,7 @@ class ListBis extends React.Component
     }
 }
 
-class TodoList extends React.Component
+export default class TodoList extends React.Component
 {
     constructor(props)
     {
@@ -142,6 +144,5 @@ class TodoList extends React.Component
         </>
     }
 }
-/*
-
-ReactDOM.render(<TodoList />, document.getElementById('todoList'));*/
+//
+// ReactDOM.render(<TodoList />, document.getElementById('todoList'));
