@@ -1,32 +1,32 @@
 import React from "react";
 
-function List({remove, completed, info, data})
-{
+function List({remove, completed, info, data}) {
     return <>{data.map((todo, key) => {
-        return <li key={key} >{todo}
+        return <li key={key}>{todo}
             <button key={key + '_remove'} data-key={key} data-info={info} onClick={remove}>supprime</button>
 
-            <button key={key + '_completed'} data-key={key} data-info={info} onClick={completed}>{info === 'todo' ? "fait" : "à faire"}</button>
+            <button key={key + '_completed'} data-key={key} data-info={info}
+                    onClick={completed}>{info === 'todo' ? "fait" : "à faire"}</button>
         </li>;
     })
     }
     </>;
 }
 
-class ListBis extends React.Component
-{
-    constructor(props)
-    {
+class ListBis extends React.Component {
+    constructor(props) {
         super(props);
     }
 
-    render()
-    {
+    render() {
         return <>{this.props.data.map((todo, key) => {
-            return <li key={key} >{todo}
-                <button key={key + '_remove'} data-key={key} data-info={this.props.info} onClick={this.props.remove}>supprime</button>
+            return <li key={key}>{todo}
+                <button key={key + '_remove'} data-key={key} data-info={this.props.info}
+                        onClick={this.props.remove}>supprime
+                </button>
 
-                <button key={key + '_completed'} data-key={key} data-info={this.props.info} onClick={this.props.completed}>{this.props.info === 'todo' ? "fait" : "à faire"}</button>
+                <button key={key + '_completed'} data-key={key} data-info={this.props.info}
+                        onClick={this.props.completed}>{this.props.info === 'todo' ? "fait" : "à faire"}</button>
             </li>;
         })
         }
@@ -34,10 +34,8 @@ class ListBis extends React.Component
     }
 }
 
-export default class TodoList extends React.Component
-{
-    constructor(props)
-    {
+export default class TodoList extends React.Component {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -47,9 +45,8 @@ export default class TodoList extends React.Component
         };
     }
 
-    add = (task, info) =>
-    {
-        if("todo" === info) {
+    add = (task, info) => {
+        if ("todo" === info) {
             let liste = this.state.liste.slice();
             liste.push(task);
 
@@ -68,25 +65,22 @@ export default class TodoList extends React.Component
         }
     }
 
-    addSubmit = (e) =>
-    {
+    addSubmit = (e) => {
         e.preventDefault();
 
-        if(this.state.todoField.length) {
+        if (this.state.todoField.length) {
             this.add(this.state.todoField, "todo");
         }
     }
 
-    changeTodoField = (e) =>
-    {
+    changeTodoField = (e) => {
         this.setState({todoField: e.target.value});
     }
 
     removeTask = (liste, index) => liste.filter((val, key) => key != index);
 
-    removeTaskBt = (e) =>
-    {
-        if("todo" === e.target.dataset.info) {
+    removeTaskBt = (e) => {
+        if ("todo" === e.target.dataset.info) {
             let tmp = this.state.liste.slice();
 
             let liste = this.removeTask(tmp, e.target.dataset.key);
@@ -99,9 +93,8 @@ export default class TodoList extends React.Component
         }
     }
 
-    completedTask= (e) =>
-    {
-        if("todo" === e.target.dataset.info) {
+    completedTask = (e) => {
+        if ("todo" === e.target.dataset.info) {
             let tmp = this.state.liste.slice();
 
             let task = tmp[e.target.dataset.key];
@@ -123,26 +116,40 @@ export default class TodoList extends React.Component
 
     }
 
-    render()
-    {
+    render() {
         return <>
-            <form action="" method="post" onSubmit={this.addSubmit}>
-                <input name="todo" value={this.state.todoField} onChange={this.changeTodoField} />
 
-                <button type="submit" >Ajouter</button>
-            </form>
+            <div className="card">
+                <h2 className="card-header">ToDo list</h2>
 
-            <p>{this.state.liste.length ? "Tache à faire" : ""}</p>
-            <ul>
-                <ListBis remove={this.removeTaskBt} completed={this.completedTask} info="todo" data={this.state.liste}/>
-            </ul>
+                <div className="card-body">
+                    <div className="col-sm-2">
+                        <form action="" method="post" onSubmit={this.addSubmit}>
+                            <input name="todo" value={this.state.todoField} onChange={this.changeTodoField}/>
 
-            <p>{this.state.listeFaite.length ? "Tache faite" : ""}</p>
-            <ul>
-                <List remove={this.removeTaskBt} completed={this.completedTask} info="fait" data={this.state.listeFaite}/>
-            </ul>
+                            <button type="submit">Ajouter</button>
+                        </form>
+
+                        <p>{this.state.liste.length ? "Tache à faire" : ""}</p>
+                        <ul>
+                            <ListBis remove={this.removeTaskBt} completed={this.completedTask} info="todo"
+                                     data={this.state.liste}/>
+                        </ul>
+
+                        <p>{this.state.listeFaite.length ? "Tache faite" : ""}</p>
+                        <ul>
+                            <List remove={this.removeTaskBt} completed={this.completedTask} info="fait"
+                                  data={this.state.listeFaite}/>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
         </>
     }
 }
 //
 // ReactDOM.render(<TodoList />, document.getElementById('todoList'));
+
+

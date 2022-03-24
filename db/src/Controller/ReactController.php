@@ -48,4 +48,19 @@ class ReactController extends AbstractController
         ]);
     }
 
+    #[Route('/calcHook', name: 'calcHook')]
+    public function calcHook(): Response
+    {
+        return $this->render('js/react/calcHook.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
+
+    #[Route('/reactDisplay', name: 'reactDisplay')]
+    public function reactDisplay(): Response
+    {
+        return $this->render('js/react/reactDisplay.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
 }

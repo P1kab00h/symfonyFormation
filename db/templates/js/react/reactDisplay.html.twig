@@ -5,13 +5,11 @@
 {% block javascripts %}
     {{ parent() }}
     {# appel de notre premier script en react #}
-    {{ encore_entry_script_tags('js/hook') }}
+    {{ encore_entry_script_tags('js/appRender') }}
 {% endblock %}
 
 {% block body %}
 
-    <div id="firstHook"></div>
-
-
+    <div id="app"></div>
 
 {% endblock %}
