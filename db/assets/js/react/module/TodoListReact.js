@@ -125,9 +125,9 @@ export default class TodoList extends React.Component {
                 <div className="card-body">
                     <div className="col-sm-2">
                         <form action="" method="post" onSubmit={this.addSubmit}>
-                            <input name="todo" value={this.state.todoField} onChange={this.changeTodoField}/>
+                            <input className="form-control m-1" name="todo" value={this.state.todoField} onChange={this.changeTodoField}/>
 
-                            <button type="submit">Ajouter</button>
+                            <button className="col text-white border-white btn btn-dark-moon m-1" type="submit">Ajouter</button>
                         </form>
 
                         <p>{this.state.liste.length ? "Tache à faire" : ""}</p>

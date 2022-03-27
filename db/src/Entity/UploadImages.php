@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UploadImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UploadImagesRepository::class)]
 class UploadImages
@@ -11,9 +12,11 @@ class UploadImages
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('voiture:read')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups('voiture:read')]
     private $name;
 
     #[ORM\ManyToOne(targetEntity: Voiture::class, inversedBy: 'uploadImages')]

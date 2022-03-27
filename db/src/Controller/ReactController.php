@@ -2,9 +2,13 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
+use App\Repository\VoitureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ReactController extends AbstractController
 {
@@ -63,4 +67,13 @@ class ReactController extends AbstractController
             'controller_name' => 'JsController',
         ]);
     }
+
+    #[Route('/ajaxSansRincer', name: 'ajaxSansRincer', methods: ['GET'])]
+    public function ajaxSansRincer(VoitureRepository $voitureRepository, NormalizerInterface $normalizer): Response
+    {
+        return  $this->json($normalizer->normalize($voitureRepository->findAll(), null, ['groups' => 'voiture:read']));
+//        return $this->json($normalizer->normalize($voitureRepository->findAll(), null, ['groups' => 'voiture:read']));
+
+    }
+
 }

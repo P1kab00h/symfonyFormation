@@ -65,13 +65,13 @@ export default function Calc() {
 
                     {/* Les deux arguments OBLIGATOIRE en REACT sont action & method*/}
                     <form action="" method="post" onSubmit={submitFormCalc}>
-                        <div><input className="form-control" type="number" value={firstValue}
+                        <div><input className="form-control m-1" type="number" value={firstValue}
                                     onChange={changeFirstValue}/></div>
                         <div>
                             <label>
-                                <select name="operateur" id="operateur-select" value={operateur}
+                                <select className="form-control m-1" name="operateur" id="operateur-select" value={operateur}
                                         onChange={changeOperateur}>
-                                    <option value="">-- Choisissez un opérateur --</option>
+                                    <option value="">-- opérateur --</option>
                                     <option value="+">+</option>
                                     <option value="-">-</option>
                                     <option value="*">*</option>
@@ -79,8 +79,8 @@ export default function Calc() {
                                 </select>
                             </label>
                         </div>
-                        <div><input className="form-control" type="number" value={secondValue} onChange={changeSecondValue}/></div>
-                        <input type="submit" defaultValue="Calculer !"/>
+                        <div><input className="form-control m-1" type="number" value={secondValue} onChange={changeSecondValue}/></div>
+                        <button className="col text-white border-white btn btn-dark-moon m-1" type="submit">Calculer !</button>
 
                         <div> {isNaN(result) ? '' : 'Resultat :' + result}</div>
 

@@ -80,9 +80,13 @@ function MainComponent({test, children}) {
 
     return <>
         <main>
-            <h2>{test}</h2>
 
-            <div>{children}</div>
+            <div className="card">
+                <h2 className="card-header">{test}</h2>
+            <div className="card-body">{children}</div>
+
+                </div>
+
         </main>
     </>
 }

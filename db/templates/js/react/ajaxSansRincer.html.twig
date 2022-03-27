@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello React!{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {# appel de notre premier script en react #}
+    {{ encore_entry_script_tags('js/calc') }}
+{% endblock %}
+
+{% block body %}
+
+    <div id="firstHook"></div>
+
+
+
+{% endblock %}

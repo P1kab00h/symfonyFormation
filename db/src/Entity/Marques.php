@@ -6,6 +6,7 @@ use App\Repository\MarquesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MarquesRepository::class)]
 class Marques
@@ -13,9 +14,11 @@ class Marques
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups('voiture:read')]
     private $id;
 
     #[ORM\Column(type: 'string', length: 100)]
+    #[Groups('voiture:read')]
     private $nom;
 
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Voiture::class)]

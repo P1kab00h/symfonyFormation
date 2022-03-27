@@ -155,3 +155,7 @@ section {
 .alert {
     font-style: italic;
 }
+
+.btn {
+    color: #fff;
+}

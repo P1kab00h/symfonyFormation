@@ -25,27 +25,27 @@ export default function Hook() {
 
     return <>
 
-        <div className="card">
-            <h2 className="card-header">Hello first Hook !</h2>
+        <div className={isToggleLight ? "card" : "card bg-dark text-white"}>
+            <h2 className={isToggleLight ? "card-header" : "card-header text-white"}>{isToggleLight ? 'GoodMorning first Hook !' : 'GoodNight first Hook !'}      </h2>
 
             <div className="card-body">
                 <div className="col-sm-2">
 
 
                     <p> La lumière est : {isToggleLight ? 'allumé ' : 'éteinte '}
-                        <button onClick={() => setLight(!isToggleLight)}>{isToggleLight ? '🔅' : '🌚'}</button>
+                        <button className="col text-white border-white btn btn-dark-moon m-1" onClick={() => setLight(!isToggleLight)}>{isToggleLight ? '🔅' : '🌚'}</button>
                     </p>
 
                     <p>{monTableau[0]}</p>
 
                     <div>
-                        <p>Vous avez cliqué {count} fois <button
+                        <p>Vous avez cliqué {count} fois <button className="col text-white border-white btn btn-dark-moon m-1"
                             onClick={() => setCount(count + 1)}>Cliquez-ici</button>
                         </p>
                     </div>
 
                     {/*Notre input aura pour valeur inital {monInput}, au changement on executera la fonction (fléché) {changeMonInput}*/}
-                    <div><input className="form-control" type="text" value={monInput} onChange={changeMonInput}/></div>
+                    <div><input className="form-control m-1" type="text" value={monInput} onChange={changeMonInput}/></div>
 
                     <ul>{displayList}</ul>
                 </div>

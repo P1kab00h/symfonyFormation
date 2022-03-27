@@ -8,6 +8,12 @@ import Calc from "./Calc";
 
 import TodoList from "./TodoListReact";
 
+import Dice from "./Dice";
+
+import Chifoumi from "./Chifoumi";
+
+import AjaxSansRincer from "./AjaxSansRincer";
+
 export default function App() {
     return <>
 
@@ -16,6 +22,12 @@ export default function App() {
         <Calc />
 
         <TodoList />
+
+        <Dice />
+
+        <Chifoumi />
+
+        <AjaxSansRincer />
 
     </>
 }
