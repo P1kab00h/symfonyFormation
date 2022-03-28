@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from "react";
+import Figure from 'react-bootstrap/Figure';
+import FigureImage from 'react-bootstrap/FigureImage'
+import FigureCaption from 'react-bootstrap/FigureCaption';
 
 export default function AjaxSansRincer() {
     let [image, setImage] = useState('');
@@ -6,7 +9,6 @@ export default function AjaxSansRincer() {
     let [voitures, setVoitures] = useState('');
 
     let [ajaxTimeOut, setAjaxTimeOut] = useState(0);
-
 
 
     // async function ajax() {
@@ -42,18 +44,36 @@ export default function AjaxSansRincer() {
     // useEffect(ajax);
 
 
-
-
-    // console.log(testSuite());
-
     return <>
         {voitures.length && voitures.map((voiture) =>
             <div className="card">
                 <h2 className="card-header">{voiture.nom}</h2>
-                {voiture.uploadImages.map((img) => {
-                    return <img src={"upload/" + img.name}/>
-                })
-            }
+                <div className="card-body">
+                    <div className="col-sm-3">
+                        {voiture.uploadImages.map((img) => {
+                            return <Figure>
+                                <FigureImage
+                                    width={180}
+                                    height={200}
+                                    alt="180x200"
+                                    src={"upload/" + img.name}
+                                />
+                                <FigureCaption>
+                                    Absolutely not a car picture {img.id}
+                                </FigureCaption>
+                            </Figure>
+                        })
+                        }
+{/*                        <div className="col-sm-2">
+                            {voiture.marque.map((brand) => {
+                                return <h3>
+                                    {brand.nom}
+                                </h3>
+                            })}
+                        </div>*/}
+                    </div>
+                    <p>{voiture.content}</p>
+                </div>
             </div>)
         }
 
