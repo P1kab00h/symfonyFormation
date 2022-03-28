@@ -47,6 +47,7 @@ Encore
 
     .configureBabel((config) => {
         config.plugins.push('@babel/plugin-proposal-class-properties');
+
     })
 
     // enables @babel/preset-env polyfills
@@ -69,18 +70,18 @@ Encore
     .addEntry('js/calc', './assets/js/react/calcRender.js')
 
 
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+// uncomment to get integrity="..." attributes on your script & link tags
+// requires WebpackEncoreBundle 1.4 or higher
+//.enableIntegrityHashes(Encore.isProduction())
 
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
 
-    // enables @babel/preset-env polyfills
-    .configureBabel(() => {}, {
+// enables @babel/preset-env polyfills
+/*    .configureBabel(() => {}, {
         useBuiltIns: 'usage',
         corejs: 3
-    })
+    })*/
 
 ;
 

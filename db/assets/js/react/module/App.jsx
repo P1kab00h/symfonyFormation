@@ -2,21 +2,27 @@
 // pour rappel un seul peut être default
 import React from "react";
 
-import Hook from "./Hook";
-
-import Calc from "./Calc";
-
-import TodoList from "./TodoListReact";
-
-import Dice from "./Dice";
-
-import Chifoumi from "./Chifoumi";
+// import Hook from "./Hook";
+//
+// import Calc from "./Calc";
+//
+// import TodoList from "./TodoListReact";
+//
+// import Dice from "./Dice";
+//
+// import Chifoumi from "./Chifoumi";
 
 import AjaxSansRincer from "./AjaxSansRincer";
 
 export default function App() {
     return <>
+        <AjaxSansRincer />
 
+
+
+    </>
+    {/*return <>
+        <AjaxSansRincer />
         <Hook />
 
         <Calc />
@@ -27,7 +33,7 @@ export default function App() {
 
         <Chifoumi />
 
-        <AjaxSansRincer />
 
-    </>
+
+    </>*/}
 }
