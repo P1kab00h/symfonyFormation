@@ -68,6 +68,7 @@ Encore
     .addEntry('js/todo', './assets/js/react/todo.js')
     .addEntry('js/hook', './assets/js/react/hookRender.js')
     .addEntry('js/calc', './assets/js/react/calcRender.js')
+    .addEntry('js/evalRender', './assets/js/react/evalRender.js')
 
 
 // uncomment to get integrity="..." attributes on your script & link tags

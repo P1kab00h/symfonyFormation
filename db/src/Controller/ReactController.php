@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class ReactController extends AbstractController
 {
@@ -74,6 +75,26 @@ class ReactController extends AbstractController
         return  $this->json($normalizer->normalize($voitureRepository->findAll(), null, ['groups' => 'voiture:read']));
 //        return $this->json($normalizer->normalize($voitureRepository->findAll(), null, ['groups' => 'voiture:read']));
 
+    }
+
+
+    #[Route('/reactEval', name: 'reactEval')]
+    public function reactEval(): Response
+    {
+        return $this->render('js/react/reactEval.html.twig', [
+            'controller_name' => 'JsController',
+        ]);
+    }
+
+    #[Route('/reactEvalMeet', name: 'reactEvalMeet', methods: ['GET'] )]
+    public function reactEvalMeet(HttpClientInterface $httpClient) : Response
+    {
+        $response = $httpClient->request(
+            'GET',
+            'https://randomuser.me/api/?gender=female&results=50&nat=fr'
+        );
+
+        return $this->json($response->toArray());
     }
 
 }
